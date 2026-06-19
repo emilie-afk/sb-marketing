@@ -1,340 +1,772 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Succulents Box Marketing Tools</title>
-<style>
-  :root { color-scheme: light; }
-  * { box-sizing: border-box; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    background: #f7f9f5;
-    color: #1f2d1c;
-    margin: 0;
-    padding: 40px 20px 60px;
-    line-height: 1.5;
-    min-height: 100vh;
-  }
-  .container { max-width: 880px; margin: 0 auto; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173c2b">
+  <title>Succulents Box · Marketing Workspace</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --forest-950: #073f35;
+      --forest-900: #075848;
+      --forest-800: #08705d;
+      --forest-700: #168b75;
+      --forest-600: #2aa58d;
+      --sage-500: #87a98d;
+      --sage-300: #bdd0bd;
+      --sage-200: #d7e3d6;
+      --sage-100: #eaf1e8;
+      --sage-50: #f4f7f1;
+      --cream: #fffdf7;
+      --white: #fff;
+      --ink: #17382d;
+      --muted: #63746d;
+      --line: rgba(18, 60, 44, .13);
+      --brand: #4bc0a8;
+      --brand-dark: #08705d;
+      --brand-deep: #073f35;
+      --brand-light: #9de3d4;
+      --brand-pale: #e4f6f2;
+      --mint: #c9f0e8;
+      --coral: #ff826c;
+      --lavender: #b6a7e8;
+      --sun: #f4d96b;
+      --shadow-sm: 0 3px 0 rgba(18, 60, 44, .08);
+      --shadow-lg: 0 12px 0 rgba(18, 60, 44, .12);
+      --radius-lg: 28px;
+      --radius-md: 22px;
+    }
 
-  .header {
-    text-align: center;
-    margin-bottom: 36px;
-  }
-  .header h1 {
-    font-size: 32px;
-    margin: 0 0 8px;
-    color: #2d5a2d;
-    letter-spacing: -0.5px;
-  }
-  .header p {
-    font-size: 15px;
-    color: #5a6b58;
-    margin: 0;
-  }
+    * { box-sizing: border-box; }
 
-  .section {
-    margin-bottom: 32px;
-  }
-  .section-title {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2d5a2d;
-    margin: 0 0 14px;
-    padding-left: 4px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-  .section-title .count {
-    font-size: 12px;
-    font-weight: 500;
-    color: #8a978a;
-    background: #eef2ec;
-    padding: 2px 8px;
-    border-radius: 10px;
-  }
+    html { scroll-behavior: smooth; }
 
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 16px;
-  }
+    body {
+      margin: 0;
+      min-width: 320px;
+      min-height: 100vh;
+      background-color: #faf8f2;
+      background-image: radial-gradient(rgba(18, 60, 44, .065) 1px, transparent 1px);
+      background-size: 22px 22px;
+      color: var(--ink);
+      font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
 
-  .tool-card {
-    background: white;
-    border: 1px solid #e1e8de;
-    border-radius: 14px;
-    padding: 22px;
-    text-decoration: none;
-    color: inherit;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    transition: all 0.18s ease;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.03);
-    position: relative;
-  }
-  .tool-card:hover {
-    transform: translateY(-2px);
-    border-color: #4a8a4a;
-    box-shadow: 0 6px 16px rgba(45, 90, 45, 0.12);
-  }
-  .tool-card:hover .arrow { transform: translateX(4px); }
+    button, input { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
 
-  .tool-emoji {
-    font-size: 32px;
-    line-height: 1;
-  }
-  .tool-name {
-    font-size: 17px;
-    font-weight: 600;
-    color: #2d5a2d;
-    margin: 0;
-  }
-  .tool-desc {
-    font-size: 13px;
-    color: #5a6b58;
-    margin: 0;
-    flex: 1;
-  }
-  .tool-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 6px;
-    padding-top: 12px;
-    border-top: 1px solid #eef2ec;
-  }
-  .tool-tag {
-    display: inline-block;
-    font-size: 11px;
-    background: #e8f0e5;
-    color: #2d5a2d;
-    padding: 3px 8px;
-    border-radius: 4px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  .arrow {
-    color: #4a8a4a;
-    font-size: 18px;
-    transition: transform 0.18s ease;
-  }
+    .shell {
+      width: min(1180px, calc(100% - 40px));
+      margin: 0 auto;
+      padding: 28px 0 52px;
+    }
 
-  .footer {
-    text-align: center;
-    margin-top: 48px;
-    color: #8a978a;
-    font-size: 12px;
-  }
-</style>
+    .topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      padding: 4px 2px 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      flex: 0 0 auto;
+      border: 1px solid rgba(255, 255, 255, .55);
+      border-radius: 13px 13px 18px 13px;
+      background: var(--brand);
+      box-shadow: 4px 4px 0 var(--forest-950);
+      color: white;
+      font-size: 21px;
+      transform: rotate(-4deg);
+    }
+
+    .brand-copy { min-width: 0; }
+    .brand-name {
+      margin: 0;
+      color: var(--forest-950);
+      font-size: 15px;
+      font-weight: 760;
+      letter-spacing: -.01em;
+    }
+    .brand-label {
+      margin: 1px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+    }
+
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--forest-800);
+      font-size: 12px;
+      font-weight: 650;
+    }
+    .status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #55a875;
+      box-shadow: 0 0 0 4px rgba(85, 168, 117, .14);
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 54px clamp(24px, 6vw, 70px);
+      border: 2px solid var(--forest-950);
+      border-radius: 34px 34px 70px 34px;
+      background:
+        linear-gradient(112deg, rgba(255, 255, 255, .58), transparent 62%),
+        #eef5e9;
+      box-shadow: var(--shadow-lg);
+      color: var(--forest-950);
+    }
+
+    .hero-plant {
+      position: absolute;
+      right: clamp(18px, 4vw, 54px);
+      top: 50%;
+      width: clamp(230px, 31vw, 365px);
+      height: auto;
+      transform: translateY(-48%) rotate(2deg);
+      color: var(--brand);
+      opacity: .68;
+      pointer-events: none;
+    }
+
+    .hero-plant .soft-fill {
+      fill: rgba(75, 192, 168, .07);
+      stroke: none;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 16px;
+      color: var(--forest-950);
+      font-size: 11px;
+      font-weight: 750;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+    .eyebrow::before {
+      width: 22px;
+      height: 1px;
+      content: "";
+      height: 3px;
+      background: var(--brand);
+    }
+
+    h1 {
+      max-width: 700px;
+      margin: 0;
+      font-size: clamp(34px, 6vw, 62px);
+      font-weight: 850;
+      letter-spacing: -.055em;
+      line-height: .95;
+    }
+
+    .hero-copy {
+      max-width: 590px;
+      margin: 20px 0 0;
+      color: rgba(7, 63, 53, .76);
+      font-size: 16px;
+      font-weight: 520;
+    }
+
+    .hero-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 24px;
+      margin-top: 30px;
+      color: rgba(7, 63, 53, .7);
+      font-size: 12px;
+    }
+    .hero-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .hero-meta strong {
+      color: var(--forest-950);
+      font-weight: 720;
+    }
+
+    .workspace {
+      position: relative;
+      z-index: 2;
+      margin-top: 28px;
+    }
+
+    .controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+    }
+
+    .search-wrap {
+      position: relative;
+      flex: 1;
+      min-width: 0;
+    }
+    .search-icon {
+      position: absolute;
+      left: 17px;
+      top: 50%;
+      width: 18px;
+      height: 18px;
+      transform: translateY(-50%);
+      color: var(--muted);
+      pointer-events: none;
+    }
+    .search {
+      width: 100%;
+      height: 52px;
+      padding: 0 46px;
+      border: 1px solid var(--line);
+      border: 2px solid var(--forest-950);
+      border-radius: 18px;
+      outline: none;
+      background: white;
+      box-shadow: var(--shadow-sm);
+      color: var(--ink);
+      transition: border-color .2s, box-shadow .2s, background .2s;
+    }
+    .search::placeholder { color: #8b948f; }
+    .search:focus {
+      border-color: rgba(47, 107, 80, .48);
+      background: var(--white);
+      box-shadow: 0 0 0 4px rgba(75, 192, 168, .22), 4px 4px 0 var(--forest-950);
+    }
+    .shortcut {
+      position: absolute;
+      right: 13px;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 3px 7px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--brand-pale);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 650;
+    }
+
+    .filters {
+      display: flex;
+      gap: 8px;
+      overflow-x: auto;
+      padding: 2px 1px 12px;
+      scrollbar-width: none;
+    }
+    .filters::-webkit-scrollbar { display: none; }
+
+    .filter {
+      flex: 0 0 auto;
+      padding: 8px 13px;
+      border: 1.5px solid var(--forest-950);
+      border-radius: 999px;
+      background: white;
+      color: var(--muted);
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: 650;
+      transition: all .18s ease;
+    }
+    .filter:hover {
+      border-color: var(--forest-950);
+      color: var(--forest-800);
+      background: #f7e7a1;
+      transform: translateY(-2px) rotate(-1deg);
+    }
+    .filter[aria-pressed="true"] {
+      border-color: var(--forest-950);
+      background: var(--forest-950);
+      box-shadow: 3px 3px 0 var(--forest-950);
+      color: white;
+    }
+
+    .section {
+      margin-top: 34px;
+      animation: appear .42s ease both;
+    }
+    .section[hidden] { display: none; }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 20px;
+      margin: 0 2px 14px;
+    }
+    .section-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-icon {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid var(--forest-950);
+      border-radius: 10px 10px 14px 8px;
+      background: #f7e7a1;
+      font-size: 15px;
+      transform: rotate(-4deg);
+    }
+    .section-title {
+      margin: 0;
+      color: var(--forest-950);
+      font-size: 16px;
+      font-weight: 740;
+      letter-spacing: -.02em;
+    }
+    .section-count {
+      color: #879087;
+      font-size: 11px;
+      font-weight: 650;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .tool-card {
+      position: relative;
+      display: flex;
+      min-height: 190px;
+      flex-direction: column;
+      overflow: hidden;
+      padding: 20px;
+      border: 1.5px solid var(--forest-950);
+      border-radius: var(--radius-md);
+      background: white;
+      box-shadow: var(--shadow-sm);
+      color: inherit;
+      text-decoration: none;
+      transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease, background .22s ease;
+    }
+    .tool-card::after {
+      position: absolute;
+      width: 76px;
+      height: 76px;
+      right: -30px;
+      bottom: -35px;
+      content: "";
+      border-radius: 50%;
+      background: var(--card-tint, var(--sage-100));
+      opacity: 1;
+      transition: transform .25s ease;
+    }
+    .tool-card:hover {
+      z-index: 1;
+      transform: translateY(-5px) rotate(-.7deg);
+      border-color: var(--forest-950);
+      background: #fffefb;
+      box-shadow: 7px 7px 0 var(--forest-950);
+    }
+    .tool-card:hover::after { transform: scale(1.25); }
+    .tool-card:focus-visible {
+      outline: 3px solid rgba(61, 128, 97, .25);
+      outline-offset: 3px;
+    }
+
+    .card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .tool-icon {
+      display: grid;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border: 1.5px solid var(--forest-950);
+      border-radius: 14px 18px 13px 20px;
+      background: var(--card-tint, var(--sage-100));
+      font-size: 22px;
+      transform: rotate(-4deg);
+    }
+    .open-icon {
+      display: grid;
+      place-items: center;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid var(--forest-950);
+      border-radius: 50%;
+      color: var(--forest-700);
+      transition: transform .2s, background .2s, color .2s;
+    }
+    .tool-card:hover .open-icon {
+      transform: translate(2px, -2px);
+      background: var(--coral);
+      color: white;
+    }
+    .open-icon svg { width: 13px; height: 13px; }
+
+    .tool-name {
+      margin: 18px 0 5px;
+      color: var(--forest-950);
+      font-size: 17px;
+      font-weight: 800;
+      letter-spacing: -.02em;
+    }
+    .tool-desc {
+      flex: 1;
+      margin: 0;
+      color: var(--muted);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+    .tool-tag {
+      align-self: flex-start;
+      margin-top: 15px;
+      color: var(--forest-950);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: var(--card-tint, var(--sage-100));
+    }
+
+    .empty {
+      display: none;
+      padding: 62px 20px;
+      border: 1px dashed rgba(47, 107, 80, .22);
+      border-radius: var(--radius-lg);
+      color: var(--muted);
+      text-align: center;
+    }
+    .empty.visible { display: block; }
+    .empty strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--forest-950);
+      font-size: 17px;
+    }
+
+    .footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      margin-top: 52px;
+      padding: 22px 2px 0;
+      border-top: 1px solid var(--line);
+      color: #7d8881;
+      font-size: 11px;
+    }
+    .footer strong { color: var(--forest-700); }
+
+    @keyframes appear {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 860px) {
+      .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 600px) {
+      .shell {
+        width: min(100% - 24px, 1180px);
+        padding-top: 16px;
+      }
+      .topbar { padding-bottom: 16px; }
+      .status { display: none; }
+      .hero {
+        padding: 38px 24px;
+        border-radius: 24px;
+      }
+      .hero-plant {
+        right: -88px;
+        width: 245px;
+        opacity: .18;
+      }
+      .hero-copy { font-size: 14px; }
+      .hero-meta { margin-top: 24px; }
+      .grid { grid-template-columns: 1fr; }
+      .tool-card { min-height: 178px; }
+      .shortcut { display: none; }
+      .search { padding-right: 18px; }
+      .footer {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+  </style>
 </head>
 <body>
-<div class="container">
-
-  <div class="header">
-    <h1>🪴 Succulents Box Marketing Tools</h1>
-    <p>Internal dashboard for marketing tools.</p>
-  </div>
-
-  <div id="sections-container"></div>
-
-  <div class="footer">
-    Add more tools by editing the <code>SECTIONS</code> list in this page.
-  </div>
-
-</div>
-
-<script>
-  // -----------------------------------------------------------------
-  // To add a new tool: find the right section, copy one block, paste
-  // it inside that section's `tools` array, and change the values.
-  // To add a new section: copy a section block, change the title,
-  // and put tools inside.
-  // -----------------------------------------------------------------
-  const SECTIONS = [
-    {
-      title: "📝 Content & Writing",
-      tools: [
-        {
-          emoji: "🧵",
-          name: "Threads Post Generator",
-          description: "Pick a post type, type a plant, get ready-to-tweak Threads post ideas.",
-          tag: "Content",
-          url: "https://sb-thread-post.netlify.app/"
-        },
-        {
-          emoji: "💬",
-          name: "Reply Drafter",
-          description: "Paste a Threads post and get 3 brand-voice reply options to copy.",
-          tag: "Replies",
-          url: "https://sb-reply-drafter.netlify.app/"
-        },
-        {
-          emoji: "📣",
-          name: "Daily Pitch Drafter",
-          description: "Draft your daily pitch in Succulents Box voice.",
-          tag: "Pitch",
-          url: "https://sb-pitch-drafter.netlify.app/"
-        },
-        {
-          emoji: "✍️",
-          name: "SB Blog Generator",
-          description: "Generate blog post drafts in Succulents Box voice.",
-          tag: "Blog",
-          url: "https://sb-blog-gen.netlify.app/"
-        },
-        {
-          emoji: "🎵",
-          name: "TikTok Caption Generator",
-          description: "Generate TikTok captions in Succulents Box voice.",
-          tag: "TikTok",
-          url: "https://sb-tiktok-cap.netlify.app/"
-        },
-        {
-          emoji: "🌵",
-          name: "Content Intelligence",
-          description: "Social listening and script production for Succulents Box.",
-          tag: "Intelligence",
-          url: "https://sb-content-intelligence.netlify.app/"
-        },
-        {
-          emoji: "📡",
-          name: "Signal Intake",
-          description: "Submit signals to feed Content Intelligence.",
-          tag: "Intelligence",
-          url: "https://sb-social-sub.netlify.app/"
-        }
-      ]
-    },
-    {
-      title: "🛍️ Product Listings",
-      tools: [
-        {
-          emoji: "🛍️",
-          name: "Faire Desc Generator",
-          description: "Generate descriptions for Faire snack listings.",
-          tag: "Faire",
-          url: "https://sb-faire-snack-desc.netlify.app/"
-        }
-      ]
-    },
-    {
-      title: "📧 Vendor / Communications",
-      tools: [
-        {
-          emoji: "📧",
-          name: "Vendor Email Reply",
-          description: "Draft replies to vendor emails in Succulents Box voice.",
-          tag: "Vendor",
-          url: "https://sb-vendor-email.netlify.app/"
-        }
-      ]
-    },
-    {
-      title: "📦 Inventory & Data Checks",
-      tools: [
-        {
-          emoji: "🔍",
-          name: "HPD Missing Products",
-          description: "Check for products missing from HPD.",
-          tag: "HPD",
-          url: "https://sb-hpd-check.netlify.app/"
-        },
-        {
-          emoji: "📦",
-          name: "MCG Inventory Check",
-          description: "Check MCG inventory levels.",
-          tag: "MCG",
-          url: "https://sb-mcg-check.netlify.app/"
-        },
-        {
-          emoji: "🏷️",
-          name: "Price Checker",
-          description: "Check and update product prices.",
-          tag: "Pricing",
-          url: "https://sb-price-checker.netlify.app/"
-        }
-      ]
-    },
-    {
-      title: "📊 Analytics",
-      tools: [
-        {
-          emoji: "📊",
-          name: "Plant Revenue Breakdown",
-          description: "Break down revenue by plant.",
-          tag: "Revenue",
-          url: "https://sb-plant-breakdown.netlify.app/"
-        },
-        {
-          emoji: "💰",
-          name: "Gross Profit Calculator",
-          description: "Calculate gross profit by product or order.",
-          tag: "Profit",
-          url: "https://sb-profit.netlify.app/"
-        }
-      ]
-    },
-    {
-      title: "👥 Team Operations",
-      tools: [
-        {
-          emoji: "🚀",
-          name: "Onboarding Dashboard",
-          description: "Internal onboarding dashboard for the team.",
-          tag: "Onboarding",
-          url: "https://sb-onboarding.netlify.app/"
-        },
-        {
-          emoji: "✅",
-          name: "Task Tracker",
-          description: "Track team tasks and progress.",
-          tag: "Tasks",
-          url: "https://sb-task-tracker.netlify.app/"
-        }
-      ]
-    }
-    // Add more sections here ↑
-  ];
-
-  const container = document.getElementById('sections-container');
-  SECTIONS.forEach(section => {
-    const sectionEl = document.createElement('div');
-    sectionEl.className = 'section';
-
-    const titleEl = document.createElement('h2');
-    titleEl.className = 'section-title';
-    titleEl.innerHTML = `${section.title} <span class="count">${section.tools.length}</span>`;
-    sectionEl.appendChild(titleEl);
-
-    const grid = document.createElement('div');
-    grid.className = 'grid';
-
-    section.tools.forEach(tool => {
-      const card = document.createElement('a');
-      card.className = 'tool-card';
-      card.href = tool.url;
-      card.target = '_blank';
-      card.rel = 'noopener';
-      card.innerHTML = `
-        <div class="tool-emoji">${tool.emoji}</div>
-        <h3 class="tool-name">${tool.name}</h3>
-        <p class="tool-desc">${tool.description}</p>
-        <div class="tool-footer">
-          <span class="tool-tag">${tool.tag}</span>
-          <span class="arrow">→</span>
+  <main class="shell">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-mark" aria-hidden="true">🌱</div>
+        <div class="brand-copy">
+          <p class="brand-name">Succulents Box</p>
+          <p class="brand-label">Internal marketing workspace</p>
         </div>
-      `;
-      grid.appendChild(card);
+      </div>
+      <div class="status"><span class="status-dot"></span>All systems ready</div>
+    </header>
+
+    <section class="hero">
+      <svg class="hero-plant" viewBox="0 0 430 300" fill="none" aria-hidden="true">
+        <path class="soft-fill" d="M16 182c0-47 27-85 61-85s61 38 61 85v73H16v-73Zm121 10c0-63 38-114 84-114s84 51 84 114v63H137v-63Zm168-7c0-43 25-78 56-78s56 35 56 78v70H305v-70Z"/>
+        <g stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- trailing plant -->
+          <path d="M77 203c-7-42-3-79 11-111"/>
+          <path d="M84 121c-27-4-46-20-48-39 19-8 43 3 55 25"/>
+          <path d="M85 150c24-10 48-5 59 11-10 18-35 25-59 15"/>
+          <path d="M78 181c-23-8-45-3-56 11 8 17 31 24 54 16"/>
+          <path d="M28 220h105l-10 56H38l-10-56Z"/>
+          <path d="M20 220h121"/>
+
+          <!-- central succulent -->
+          <path d="M181 166c-25-17-35-43-25-60 18 3 39 21 45 46"/>
+          <path d="M201 152c-8-37 1-68 22-78 16 14 18 48 4 78"/>
+          <path d="M228 153c12-34 36-55 57-52 6 21-9 50-38 68"/>
+          <path d="M197 183c-30-4-55 7-64 27 14 16 47 17 75 2"/>
+          <path d="M243 185c28-13 57-10 71 7-8 20-38 30-69 22"/>
+          <path d="M222 132v86"/>
+          <path d="M159 218h126l-12 58H171l-12-58Z"/>
+          <path d="M150 218h144"/>
+
+          <!-- tall cactus -->
+          <path d="M361 211v-96c0-15 9-25 21-25s20 10 20 25v31"/>
+          <path d="M361 161h-19c-15 0-24-9-24-22v-17"/>
+          <path d="M318 123c0-11 7-18 16-18s16 7 16 18v13"/>
+          <path d="M402 145h9c10 0 16-7 16-16v-15"/>
+          <path d="M323 218h87l-9 58h-69l-9-58Z"/>
+          <path d="M315 218h103"/>
+
+          <path d="M48 276h65M181 276h82M340 276h53"/>
+        </g>
+      </svg>
+      <div class="eyebrow">Team toolkit</div>
+      <h1>Marketing team's toolbox,<br>all in one spot.</h1>
+      <p class="hero-copy">The shortcuts, generators, and number-crunchers your team uses every day. Pick a tool and make something good.</p>
+      <div class="hero-meta">
+        <span><strong id="tool-total">16</strong> active tools</span>
+        <span><strong id="category-total">6</strong> focused categories</span>
+        <span>Built for the Succulents Box team</span>
+      </div>
+    </section>
+
+    <section class="workspace" aria-label="Marketing tools">
+      <div class="controls">
+        <label class="search-wrap">
+          <svg class="search-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8"></circle>
+            <path d="m16 16 4 4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+          </svg>
+          <input class="search" id="search" type="search" placeholder="Find a tool…" autocomplete="off" aria-label="Find a tool">
+          <span class="shortcut" aria-hidden="true">/</span>
+        </label>
+      </div>
+
+      <nav class="filters" id="filters" aria-label="Tool categories"></nav>
+      <div id="sections"></div>
+
+      <div class="empty" id="empty">
+        <strong>No tools found</strong>
+        Try another name, tag, or category.
+      </div>
+    </section>
+
+    <footer class="footer">
+      <span><strong>Succulents Box</strong> · Marketing workspace</span>
+      <span>Choose a tool to open it in a new tab.</span>
+    </footer>
+  </main>
+
+  <script>
+    const SECTIONS = [
+      {
+        title: "Content & Writing",
+        icon: "✦",
+        tint: "#f7e7a1",
+        tools: [
+          { emoji: "🧵", name: "Threads Post Generator", description: "Turn a plant and post type into ready-to-edit Threads ideas.", tag: "Content", url: "https://sb-thread-post.netlify.app/" },
+          { emoji: "💬", name: "Reply Drafter", description: "Create three on-brand reply options from any Threads post.", tag: "Replies", url: "https://sb-reply-drafter.netlify.app/" },
+          { emoji: "📣", name: "Daily Pitch Drafter", description: "Draft the day's pitch in the Succulents Box voice.", tag: "Pitch", url: "https://sb-pitch-drafter.netlify.app/" },
+          { emoji: "✍️", name: "SB Blog Generator", description: "Build useful blog drafts that sound like Succulents Box.", tag: "Blog", url: "https://sb-blog-gen.netlify.app/" },
+          { emoji: "🎵", name: "TikTok Caption Generator", description: "Create platform-ready TikTok captions in the brand voice.", tag: "TikTok", url: "https://sb-tiktok-cap.netlify.app/" },
+          { emoji: "🌵", name: "Content Intelligence", description: "Move from social signals to reviewed content and scripts.", tag: "Intelligence", url: "https://sb-content-intelligence.netlify.app/" },
+          { emoji: "📡", name: "Signal Intake", description: "Send raw signals into the Content Intelligence workflow.", tag: "Intelligence", url: "https://sb-social-sub.netlify.app/" }
+        ]
+      },
+      {
+        title: "Product Listings",
+        icon: "◇",
+        tint: "#ffd2c8",
+        tools: [
+          { emoji: "🛍️", name: "Faire Desc Generator", description: "Generate clear descriptions for Faire snack listings.", tag: "Faire", url: "https://sb-faire-snack-desc.netlify.app/" }
+        ]
+      },
+      {
+        title: "Vendor & Communications",
+        icon: "↗",
+        tint: "#cfc6ef",
+        tools: [
+          { emoji: "✉️", name: "Vendor Email Reply", description: "Draft polished vendor replies in the Succulents Box voice.", tag: "Vendor", url: "https://sb-vendor-email.netlify.app/" }
+        ]
+      },
+      {
+        title: "Inventory & Data Checks",
+        icon: "⌁",
+        tint: "#c8e9df",
+        tools: [
+          { emoji: "🔍", name: "HPD Missing Products", description: "Find products that are missing from HPD.", tag: "HPD", url: "https://sb-hpd-check.netlify.app/" },
+          { emoji: "📦", name: "MCG Inventory Check", description: "Review current MCG inventory levels.", tag: "MCG", url: "https://sb-mcg-check.netlify.app/" },
+          { emoji: "🏷️", name: "Price Checker", description: "Check product pricing and prepare updates.", tag: "Pricing", url: "https://sb-price-checker.netlify.app/" }
+        ]
+      },
+      {
+        title: "Analytics",
+        icon: "↗",
+        tint: "#c9dff0",
+        tools: [
+          { emoji: "📊", name: "Plant Revenue Breakdown", description: "See revenue performance broken down by plant.", tag: "Revenue", url: "https://sb-plant-breakdown.netlify.app/" },
+          { emoji: "💰", name: "Gross Profit Calculator", description: "Calculate gross profit by product or order.", tag: "Profit", url: "https://sb-profit.netlify.app/" }
+        ]
+      },
+      {
+        title: "Team Operations",
+        icon: "＋",
+        tint: "#ead7e7",
+        tools: [
+          { emoji: "🚀", name: "Onboarding Dashboard", description: "Guide new team members through internal onboarding.", tag: "Onboarding", url: "https://sb-onboarding.netlify.app/" },
+          { emoji: "✓", name: "Task Tracker", description: "Keep team tasks and progress visible in one place.", tag: "Tasks", url: "https://sb-task-tracker.netlify.app/" }
+        ]
+      }
+    ];
+
+    const state = { category: "All", query: "" };
+    const sectionsRoot = document.querySelector("#sections");
+    const filtersRoot = document.querySelector("#filters");
+    const search = document.querySelector("#search");
+    const empty = document.querySelector("#empty");
+    const arrow = '<svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12 12 4M6 4h6v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>';
+
+    document.querySelector("#tool-total").textContent = SECTIONS.reduce((sum, section) => sum + section.tools.length, 0);
+    document.querySelector("#category-total").textContent = SECTIONS.length;
+
+    function renderFilters() {
+      const categories = ["All", ...SECTIONS.map(section => section.title)];
+      filtersRoot.innerHTML = categories.map(category => `
+        <button class="filter" type="button" data-category="${category}" aria-pressed="${state.category === category}">
+          ${category}
+        </button>
+      `).join("");
+    }
+
+    function renderSections() {
+      const query = state.query.trim().toLowerCase();
+      let visibleCount = 0;
+
+      sectionsRoot.innerHTML = SECTIONS.map((section, sectionIndex) => {
+        const categoryMatches = state.category === "All" || state.category === section.title;
+        const tools = categoryMatches ? section.tools.filter(tool => {
+          const haystack = `${tool.name} ${tool.description} ${tool.tag} ${section.title}`.toLowerCase();
+          return haystack.includes(query);
+        }) : [];
+
+        if (!tools.length) return "";
+        visibleCount += tools.length;
+
+        return `
+          <section class="section" style="animation-delay:${Math.min(sectionIndex * 45, 180)}ms">
+            <div class="section-heading">
+              <div class="section-title-wrap">
+                <span class="section-icon" aria-hidden="true">${section.icon}</span>
+                <h2 class="section-title">${section.title}</h2>
+              </div>
+              <span class="section-count">${tools.length} ${tools.length === 1 ? "tool" : "tools"}</span>
+            </div>
+            <div class="grid">
+              ${tools.map(tool => `
+                <a class="tool-card" href="${tool.url}" target="_blank" rel="noopener" style="--card-tint:${section.tint}" data-search="${tool.name} ${tool.tag}">
+                  <div class="card-top">
+                    <span class="tool-icon" aria-hidden="true">${tool.emoji}</span>
+                    <span class="open-icon">${arrow}</span>
+                  </div>
+                  <h3 class="tool-name">${tool.name}</h3>
+                  <p class="tool-desc">${tool.description}</p>
+                  <span class="tool-tag">${tool.tag}</span>
+                </a>
+              `).join("")}
+            </div>
+          </section>
+        `;
+      }).join("");
+
+      empty.classList.toggle("visible", visibleCount === 0);
+    }
+
+    function render() {
+      renderFilters();
+      renderSections();
+    }
+
+    filtersRoot.addEventListener("click", event => {
+      const button = event.target.closest("[data-category]");
+      if (!button) return;
+      state.category = button.dataset.category;
+      render();
     });
 
-    sectionEl.appendChild(grid);
-    container.appendChild(sectionEl);
-  });
-</script>
+    search.addEventListener("input", event => {
+      state.query = event.target.value;
+      renderSections();
+    });
+
+    document.addEventListener("keydown", event => {
+      if (event.key === "/" && document.activeElement !== search) {
+        event.preventDefault();
+        search.focus();
+      }
+      if (event.key === "Escape" && document.activeElement === search) {
+        search.value = "";
+        state.query = "";
+        renderSections();
+        search.blur();
+      }
+    });
+
+    render();
+  </script>
 </body>
 </html>
